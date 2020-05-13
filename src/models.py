@@ -6,7 +6,26 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 from eralchemy import render_er
 
+
 Base = declarative_base()
+class User(Base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    first_name = Column(String(200), nullable=False)
+    last_name = Column(String(200, nullable=False)
+    password = Column(String(200), nullable=False)
+    email = Column(String(200), nullable=False)
+    profile_pic = Column(String(250), nullable=True)
+
+
+class DirectMessage(Base):
+    __tablename__ = 'direct_messages'
+    id = Column(Integer, primary_key = True)
+    sender_id = Column(Integer, ForeignKey('users.id'))
+    receiver_id = Column(Integer, ForeignKey('users.id'))
+    body = Column(String(500), nullable=False)
+    date = Column()
+
 
 class Person(Base):
     __tablename__ = 'person'
